@@ -1,0 +1,69 @@
+CREATE TABLE colaborador(id_col SERIAL,tipo_identificacion varchar(5), numero_identificacion varchar(15), nombre varchar(30), usuario varchar(30), contraseña varchar(8), fecha_creacion date, fecha_modificacion date, col_creador varchar(30), col_modificador varchar(30), estado varchar(1), PRIMARY KEY(id_col)); 
+
+CREATE TABLE donante(id_donante SERIAL,  tipo_identificacion varchar(5), numero_identificacion varchar(15), nombre varchar(30), email varchar(30), telefono varchar(15), fecha_creacion date, fecha_modificacion date, col_creador varchar(30), col_modificador varchar(30), PRIMARY KEY(id_donante));
+
+
+
+CREATE TABLE programa(id_programa SERIAL, codigo varchar(10), nombre varchar(30), descripcion varchar(300), tipo varchar(30), fecha_creacion date, fecha_modificacion date,  usu_creador varchar(30), usu_modificador varchar(30), estado varchar(1), id_col int4 NOT NULL, PRIMARY KEY(id_programa));
+
+
+CREATE TABLE proyecto(id_proyecto SERIAL, codigo varchar(10), nombre varchar(30), procedencia varchar(30), costo float8, caso_exito  boolean, descripcion varchar(300), fecha_creacion  date, fecha_modificacion date, usu_creador varchar(30), usu_modificador varchar(30), estado varchar(1), id_programa int4 NOT NULL, PRIMARY KEY(id_proyecto);
+
+
+
+
+CREATE TABLE donacion(id_donacion SERIAL, name_projecto_donar varchar(30), valor_a_donar float8, nombre_donante varchar(30), id_proyecto int4 NOT NULL, id_donante int4 NOT NULL, PRIMARY KEY(id_donacion)); 
+
+
+
+--llaves foraneas-- 
+
+ALTER TABLE programa ADD CONSTRAINT FK_COLABORADOR_PROGRAMA FOREIGN KEY(id_col) REFERENCES colaborador(id_col);
+
+ALTER TABLE proyecto ADD CONSTRAINT FK_PROGRAMA_PROYECTO FOREIGN KEY (id_programa) REFERENCES programa (id_programa);
+
+
+ALTER TABLE donacion ADD CONSTRAINT FK_PROYECTO_DONACION FOREIGN KEY(id_proyecto) REFERENCES proyecto(id_proyecto);
+
+
+ALTER TABLE donacion ADD CONSTRAINT FK_DONANTE_DONACION FOREIGN KEY(id_donante) REFERENCES donante(id_donante);
+
+
+
+
+
+
+--indices--
+
+CREATE UNIQUE INDEX name_table_name_column ON name_table (name_column); OK
+
+CREATE UNIQUE INDEX proyecto_id_proyecto ON proyecto(id_proyecto);
+
+CREATE UNIQUE INDEX proyecto_codigo ON proyecto(codigo);
+
+
+CREATE UNIQUE INDEX donacion_id_donacion ON donacion(id_donacion);
+
+
+
+CREATE UNIQUE INDEX donante_id_donante ON donante(id_donante);
+
+CREATE UNIQUE INDEX donante_numero_identificacion ON donante(numero_identificacion);
+
+
+
+CREATE UNIQUE INDEX programa_id_programa ON programa(id_programa);
+
+CREATE UNIQUE INDEX programa_codigo ON programa(codigo);
+
+
+
+
+CREATE UNIQUE INDEX colaborador_id_col ON colaborador(id_col);
+
+
+CREATE UNIQUE INDEX colaborador_numero_identificacion ON colaborador(numero_identificacion);
+
+
+
+
