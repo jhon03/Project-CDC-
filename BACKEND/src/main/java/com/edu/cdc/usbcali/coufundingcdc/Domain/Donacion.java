@@ -11,7 +11,7 @@ import java.util.Date;
 public class Donacion {
 
     @Id
-    @Column(name = "id_donacion")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDonacion;
 
     @Column(name = "name_projecto_donar")

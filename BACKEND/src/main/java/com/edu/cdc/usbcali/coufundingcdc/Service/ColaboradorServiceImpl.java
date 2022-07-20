@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Scope("singleton")
 @Service
@@ -83,4 +85,26 @@ public class ColaboradorServiceImpl  implements ColaboradorService {
         colaboradorRepository.deleteById(idCol);
 
     }
+
+    @Override
+    public List<Colaborador> findByNumeroIdentificacionLike(String numeroIdentificacion) throws Exception {
+
+        List<Colaborador> lstColaboradores = null;
+        lstColaboradores = colaboradorRepository.findByNumeroIdentificacionLike(numeroIdentificacion);
+
+        if (lstColaboradores.isEmpty()){
+            throw new Exception("No se encontraron colaboradores con el numero de indentificacion");
+        }
+
+        return lstColaboradores;
+    }
+
+    @Override
+    public List<Colaborador> findAll() {
+
+        return (List<Colaborador>) colaboradorRepository.findAll();
+    }
+
+
 }
+

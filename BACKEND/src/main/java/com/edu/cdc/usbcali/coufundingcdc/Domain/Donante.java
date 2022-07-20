@@ -13,7 +13,7 @@ import java.util.List;
 public class Donante {
 
     @Id
-    @Column(name = "id_donante")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDonante;
 
     @Column(name = "tipo_identificacion")

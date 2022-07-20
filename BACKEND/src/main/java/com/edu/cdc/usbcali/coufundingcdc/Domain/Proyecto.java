@@ -14,7 +14,7 @@ public class Proyecto {
 
 
     @Id
-    @Column(name = "id_proyecto")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProyecto;
 
     @Column(name = "codigo")

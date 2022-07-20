@@ -13,7 +13,7 @@ import java.util.List;
 public class Colaborador {
 
     @Id
-    @Column(name = "id_col")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCol;
 
     @Column(name = "tipo_identificacion")
@@ -49,6 +49,7 @@ public class Colaborador {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "colaborador")
     private List<Programa> programas = new ArrayList<>();
+
 
 
 }
